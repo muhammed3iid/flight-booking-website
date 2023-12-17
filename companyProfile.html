@@ -1,0 +1,182 @@
+<!-- companyProfile.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company Profile</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    header img {
+      max-width: 50px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      color: #333;
+      margin: 0;
+    }
+
+    section {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 300px;
+      margin-top: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #333;
+      margin: 10px 0;
+    }
+
+    textarea, input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<section>
+  <img src="AirPlane_logo.jpeg" alt="Company Logo" width="250" height="250">
+  <h2>AiroPlane</h2>
+
+  <div id="bioSection">
+    <h2>Bio:</h2>
+    <p id="bioText">Go where you want to go. Wherever you're going, we'll get you there</p>
+    <textarea id="bioInput" style="display: none;"></textarea>
+  </div>
+
+  <div id="addressSection">
+    <h2>Address:</h2>
+    <p id="addressText">123 Company Street, Cityville</p>
+    <textarea id="addressInput" style="display: none;"></textarea>
+  </div>
+
+  <h2>Flights List</h2>
+  <ul id="flightsList">
+    <li>Flight 1</li>
+    <li>Flight 2</li>
+  </ul>
+
+  <button id="editButton" onclick="toggleEditMode()">Edit</button>
+</section>
+
+<script>
+  function toggleEditMode() {
+    var bioText = document.getElementById("bioText");
+    var bioInput = document.getElementById("bioInput");
+
+    var addressText = document.getElementById("addressText");
+    var addressInput = document.getElementById("addressInput");
+
+    var flightsList = document.getElementById("flightsList");
+    var editButton = document.getElementById("editButton");
+
+    if (bioText.style.display === "block") {
+      // Switch to edit mode
+      bioText.style.display = "none";
+      bioInput.style.display = "block";
+      bioInput.value = bioText.innerText.trim();
+
+      addressText.style.display = "none";
+      addressInput.style.display = "block";
+      addressInput.value = addressText.innerText.trim();
+
+      // Clear existing list
+      flightsList.innerHTML = "";
+
+      // Add input fields for editing flights
+      for (var i = 1; i <= 3; i++) {
+        var flightInput = document.createElement("input");
+        flightInput.type = "text";
+        flightInput.value = "Flight " + i;
+        flightsList.appendChild(flightInput);
+      }
+
+      editButton.innerText = "Save";
+    } else {
+      // Switch to view mode
+      bioText.style.display = "block";
+      bioInput.style.display = "none";
+      bioText.innerText = bioInput.value;
+
+      addressText.style.display = "block";
+      addressInput.style.display = "none";
+      addressText.innerText = addressInput.value;
+
+      // Clear existing list
+      flightsList.innerHTML = "";
+
+      // Add list items for flights
+      for (var i = 1; i <= 3; i++) {
+        var flightItem = document.createElement("li");
+        flightItem.innerText = "Flight " + i;
+        flightsList.appendChild(flightItem);
+      }
+
+      editButton.innerText = "Edit";
+    }
+  }
+</script>
+
+</body>
+</html>

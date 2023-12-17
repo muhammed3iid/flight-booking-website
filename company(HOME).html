@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company Home</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    header img {
+      max-width: 50px;
+      margin-right: 10px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    nav {
+      margin-bottom: 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav li {
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    nav li::before {
+      content: '';
+      width: 10px; /* Adjust the width of the square */
+      height: 10px; /* Adjust the height of the square */
+      background-color: #4caf50; /* Green color */
+      position: absolute;
+      left: -20px; /* Adjust the distance between the square and the text */
+      top: 50%; /* Center the square vertically */
+      transform: translateY(-50%);
+      border-radius: 2px; /* Optional: Adjust border-radius for rounded corners */
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #4caf50;
+      font-weight: bold;
+    }
+
+    #flights {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 300px;
+      margin-left: 20px;
+    }
+
+    .flight-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .flight-row:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="AirPlane_logo.jpeg" alt="Company Logo">
+  <h1>AiroPlane</h1>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="AddFile.html">Add Flight</a></li>
+    <li><a href="#flights">Flights</a></li>
+    <li><a href="companyProfile.html">Profile</a></li>
+    <li><a href="#messages">Messages</a></li>
+  </ul>
+</nav>
+
+<section id="flights">
+  <a href="flightDetails.html" class="flight-row">
+    <span>Flight Row</span>
+  </a>
+</section>
+
+</body>
+</html>
