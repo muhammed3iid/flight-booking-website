@@ -1,43 +1,41 @@
 <?php
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $userType = $_POST["userType"];
 
     $servername = "localhost";
-    $dbUsername = "root";
-    $dbPassword = "omarayman12345";
+    $dbusername = "root";
+    $dbpassword = "omarayman12345";
     $dbname = "flight_booking";
 
     // Create connection
-    $conn = new mysqli($servername, $dbUsername, $dbPassword, $dbname);
+    $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Prepare SQL statement based on user type
-    if ($userType === "company") {
-        $sql = "SELECT * FROM `company` WHERE `email` = '$email'";
+    // Check if the user is a passenger
+    $passengerSql = "SELECT * FROM `passenger` WHERE `email`='$email' AND `password`='$password';";
+    $passengerResult = $conn->query($passengerSql);
+
+    if ($passengerResult->num_rows > 0) {
+        // Passenger found, login successful
+        echo "Passenger login successful!";
     } else {
-        $sql = "SELECT * FROM `passenger` WHERE `email` = '$email'";
-    }
+        // Check if the user is a company
+        $companySql = "SELECT * FROM `company` WHERE `email`='$email' AND `password`='$password';";
+        $companyResult = $conn->query($companySql);
 
-    // Execute SQL statement
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        // User found, check password
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row["password"])) {
-            echo "Login successful!";
-            // Perform any additional actions after successful login
+        if ($companyResult->num_rows > 0) {
+            // Company found, login successful
+            echo "Company login successful!";
         } else {
-            echo "Invalid password";
+            // User not found or invalid credentials
+            echo "Invalid credentials. Please try again.";
         }
-    } else {
-        echo "User not found";
     }
 
     $conn->close();
