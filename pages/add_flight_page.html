@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Flight</title>
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+<body>
+  <form method="post" action="../php/add_flights.php">
+    <h2>Add Flight</h2>
+    <label for="flightName">Name:</label>
+    <input type="text" id="flightName" name="flightName" required>
+
+    <label for="flightFrom">From:</label>
+    <input type="text" id="flightFrom" name="flightFrom" required>
+
+    <label for="flightTo">To:</label>
+    <input type="text" id="flightTo" name="flightTo" required>
+
+    <label for="flightFees">Fees:</label>
+    <input type="number" id="flightFees" name="flightFees" required>
+
+    <label for="flightTime">Time:</label>
+    <input type="time" id="flightTime" name="flightTime" required>
+
+    <button type="submit">Add Flight</button>
+  </form>
+
+</body>
+
+</html>
